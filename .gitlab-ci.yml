@@ -24,6 +24,7 @@ validate:
 plan:
   stage: plan
   script:
+    - ls -al
     - terraform plan -out "planfile"
   dependencies:
     - validate
