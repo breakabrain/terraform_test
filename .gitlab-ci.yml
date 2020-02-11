@@ -11,10 +11,9 @@ image:
 before_script:
   - rm -rf .terraform
   - terraform --version
-  - terraform init \
-      -backend-config "bucket=$TF_VAR_bucket_name" \
-      -backend-config "region=$TF_VAR_region_bucket" \
-      -backend-config "key=$TF_VAR_key_file"
+  - terraform init -backend-config "bucket=$TF_VAR_bucket_name"
+                  -backend-config "region=$TF_VAR_region_bucket"
+                  -backend-config "key=$TF_VAR_key_file"
   - terraform workspace select $WORKSPACE_NAME || terraform workspace new $WORKSPACE_NAME
 
 stages:
