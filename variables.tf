@@ -32,19 +32,8 @@ variable "instance_type" {
 }
 
 variable "image_id" {
-    default = {
-        testing = "ami-07cda0db070313c52"
-        staging = "ami-0713f98de93617bb4"
-        production = "ami-0089b31e09ac3fffc"
-    }
-}
-
-variable "tag" {
-    default = {
-        testing = "testing"
-        staging = "staging"
-        production = "production"
-    }
+    type = string
+    default = file("./image_id")
 }
 
 variable "ssh_key" {
