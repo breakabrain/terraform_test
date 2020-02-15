@@ -6,14 +6,14 @@ resource "aws_key_pair" "key_for_bastion" {
     key_name = "key_for_bastion"
     public_key = file(var.ssh_key[terraform.workspace])
     tags = {
-        Name = "${terraform.workspace}-terraform"
+        Name = terraform.workspace-terraform
     }
 }
 
 resource "aws_eip" "eip_bastion" {
     vpc = true
     tags = {
-        Name = "${terraform.workspace}-terraform"
+        Name = terraform.workspace-terraform
     }
 }
 
@@ -76,7 +76,7 @@ resource "aws_security_group" "ssh-only" {
         cidr_blocks = ["0.0.0.0/0"]
     }
     tags = {
-        Name = "${terraform.workspace}-terraform"
+        Name = terraform.workspace-terraform
     }
 }
 
@@ -109,7 +109,7 @@ resource "aws_autoscaling_group" "ag_bastion" {
     default_cooldown = "10"
     tag  {
         key = "Name"
-        value = "${terraform.workspace}-terraform"
+        value = terraform.workspace-terraform
         propagate_at_launch = true
     }
 }
